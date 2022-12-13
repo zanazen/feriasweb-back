@@ -7,7 +7,10 @@ const departamentoSchema = new Schema(
     localizacao: {
         cidade: { type: String },
         estado: { type: String },
-      },    
+      },
+      user: [
+        { type: Schema.Types.ObjectId, ref: "User" },
+      ]    //varios usuarios //array
   },
   {
     timestamps: true,

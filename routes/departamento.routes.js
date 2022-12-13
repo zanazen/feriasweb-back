@@ -1,5 +1,5 @@
 import express from "express";
-import DepartamentoModel from "../models/departamento.model";
+import DepartamentoModel from "../models/departamento.model.js";
 import UserModel from "../models/user.model.js";
 
 const router = express.Router();
