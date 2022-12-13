@@ -6,8 +6,8 @@ const userSchema = new Schema(
         type: String,
         required: true,
         trim: true,
-        minlength: 10,
-        maxlenght: 30
+        minlength: 2,
+        maxlenght: 100
     },
     email: {
         type: String,
@@ -22,18 +22,24 @@ const userSchema = new Schema(
     cargo: {
         type: String,
         required: true,
-        minlength: 5,
-        maxlenght: 30
+        minlength: 2,
+        maxlenght: 50
     },
     isAdmin: {
         type: Boolean,
         default: false
     },
-    depart:
+    departamento:
         {
           type: Schema.Types.ObjectId,
           ref: "Departamento",
         },
+    ferias: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Ferias",
+        },
+    ]
 },
 {
 timestamps: true,

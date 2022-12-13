@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import UserModel from '../models/user.model.js';
 import generateToken from "../config/jwt.config.js";
 import FeriasModel from "../models/ferias.model.js";
-import DepartamentoModel from "../models/departamento.model.js";
+// import DepartamentoModel from "../models/departamento.model.js";
 
 const router = express.Router()
 const rounds = 10
@@ -11,7 +11,7 @@ const rounds = 10
 // cadastrar usuário
 router.get("/", async (request, response) => {
     try {
-      const users = await UserModel.find().populate("feriass");
+      const users = await UserModel.find().populate("ferias"); //feriass campo do schema
   
       return response.status(200).json(users);
     } catch (error) {
@@ -25,7 +25,7 @@ router.get("/:id", async (request, response) => {
     try {
       const { id } = request.params;
   
-      const employee = await UserModel.findById(id).populate("feriass");
+      const employee = await UserModel.findById(id).populate("ferias");
   
       if (!employee) {
         return response.status(404).json("Colaborador não encontrado");
