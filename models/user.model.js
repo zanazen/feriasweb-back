@@ -29,12 +29,11 @@ const userSchema = new Schema(
         type: Boolean,
         default: false
     },
-    depart: [
+    depart:
         {
           type: Schema.Types.ObjectId,
           ref: "Departamento",
         },
-    ],
 },
 {
 timestamps: true,
