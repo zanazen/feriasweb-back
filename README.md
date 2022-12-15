@@ -15,7 +15,7 @@ Nesse sentido, decidiu-se criar uma aplicação web para atender a essa demanda 
 CRUD de Usuários: Métodos voltados para a captura de usuários que são colaboradores na administração pública e devem ter um login no sistema.
 CRUD de Férias: Métodos para a visualização, solicitação, edição e exclusão das férias de cada colaborador.
 
-# 🔧 Tecnologias utilizadas
+# 🤖 Tecnologias utilizadas
 VS Code
 nodeJS
 expressJS
