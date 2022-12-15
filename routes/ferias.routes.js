@@ -1,16 +1,36 @@
 import express from "express";
 import FeriasModel from "../models/ferias.model.js";
 import UserModel from "../models/user.model.js";
+import verifyPossibility from "../middlewares/verifyPossibility.js"
 
 const router = express.Router();
 
+router.post("/marcar/:userId", verifyPossibility, async (request, response) => {
+  try {
+    const { userId } = request.params;
+
+    const createNew = await FeriasModel.create({
+      ...request.body,
+      user: userId,
+    });
+
+    await UserModel.findByIdAndUpdate(userId, {
+      $push: { ferias: createNew._id },
+    });
+
+    return response.status(201).json(createNew);
+  } catch (error) {
+    console.log(error);
+    return response.status(500).json({ msg: "Algo está errado." });
+  }
+});
+
 router.get("/", async (request, response) => {
   try {
-    const feriass = await FeriasModel.find()
-      .populate("user")
-      .sort({ deadline: 1 });
+    const ferias = await FeriasModel.find({})
+      .populate("user");
 
-    return response.status(200).json(feriass);
+    return response.status(200).json(ferias);
   } catch (error) {
     console.log(error);
 
@@ -28,26 +48,6 @@ router.get("/:id", async (request, response) => {
   } catch (error) {
     console.log(error);
 
-    return response.status(500).json({ msg: "Algo está errado." });
-  }
-});
-
-router.post("/create/:employeeId", async (request, response) => {
-  try {
-    const { employeeId } = request.params;
-
-    const createNew = await FeriasModel.create({
-      ...request.body,
-      user: employeeId,
-    });
-
-    await UserModel.findByIdAndUpdate(employeeId, {
-      $push: { feriass: createNew._id },
-    });
-
-    return response.status(201).json(createNew);
-  } catch (error) {
-    console.log(error);
     return response.status(500).json({ msg: "Algo está errado." });
   }
 });
@@ -76,7 +76,7 @@ router.delete("/delete/:id", async (request, response) => {
     const deleteFerias = await FeriasModel.findByIdAndDelete(id);
 
     await UserModel.findByIdAndUpdate(deleteFerias.user, {
-      $pull: { feriass: deleteFerias._id },
+      $pull: { ferias: deleteFerias._id },
     });
 
     return response.status(200).json(deleteFerias);

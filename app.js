@@ -20,5 +20,5 @@ app.use("/ferias", feriasRouter);
 app.use("/departamento", departamentoRouter);
 
 app.listen(Number(process.env.PORT), () =>
-  console.log(`server on port ${process.env.PORT}!'`)
+  console.log(`server on port ${process.env.PORT}!`)
 );
