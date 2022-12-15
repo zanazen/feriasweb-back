@@ -15,7 +15,7 @@ async function attachCurrentUser(request, response, next) {
     next();
   } catch (error) {
     console.log(error);
-    return response.status(500).json("algo deu errado:", error);
+    return response.status(500).json("algo deu errado", error);
   }
 }
 

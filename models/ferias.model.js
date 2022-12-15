@@ -2,19 +2,28 @@ import { model, Schema } from "mongoose";
 
 const feriasSchema = new Schema(
     {
-        parcela1ini: { type: Date, required: true, default: 0 },
-        parcela1fim: { type: Date, required: true, default: 0 },
-        
-        parcela2ini: { type: Date, required: false, default: 0 },
-        parcela2fim: { type: Date, required: false, default: 0 },
 
-        parcela3ini: { type: Date, required: false, default: 0 },
-        parcela3fim: { type: Date, required: false, default: 0 },      
-        
+        // O servidor poderá marcar vários períodos de férias 
+        // conforme previsto pela regulamentação do órgão
+        // cada marcação de período de férias podera estar com status agendado,
+        // gozando ou até cancelado
+
+        inicioPeriodo: {
+            type: Date,
+            default: Date.now(),
+        },
+        fimPeriodo: {
+            type: Date,
+            default: Date.now(),
+        },
+        status: {
+            type: String,
+            default: "agendado"
+        },        
         user: { type: Schema.Types.ObjectId, ref: "User" },
     },
     
-{ timestamps: true, }
+{ timestamps: true }
 );
 
 const FeriasModel = model("Ferias", feriasSchema);

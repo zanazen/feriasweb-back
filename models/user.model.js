@@ -33,7 +33,10 @@ const userSchema = new Schema(
         {
           type: Schema.Types.ObjectId,
           ref: "Departamento",
-        },
+    },
+    inicioExercicio: {
+        type: Date
+    },
     ferias: [
         {
           type: Schema.Types.ObjectId,
