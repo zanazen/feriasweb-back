@@ -1,6 +1,6 @@
-# 📇 SISTEMA FÉRIAS WEB
+# 🏖️ SISTEMA FÉRIAS WEB
 
-# 📝 Descrição
+# 🗒️ Descrição
 
 Sistema desenvolvido para fins de apresentação como projeto final do bootcamp de Desenvolvimento Web da IronHack em parceria com a Escola Nacional de Governo(ENAP).  
 
@@ -11,7 +11,7 @@ Tais colaboradores, via de rega, não têm acesso a esses sistemas, assim o cont
 Nesse sentido, decidiu-se criar uma aplicação web para atender a essa demanda dos “não servidores”.
 
 
-# 📚 Funcionalidades
+# ⚙ Funcionalidades
 CRUD de Usuários: Métodos voltados para a captura de usuários que são colaboradores na administração pública e devem ter um login no sistema.
 CRUD de Férias: Métodos para a visualização, solicitação, edição e exclusão das férias de cada colaborador.
 
@@ -28,5 +28,5 @@ mongoDB
 mongoose
 
 
-# 🎯 Status do projeto
+# ⏲ Status do projeto
 O sistema foi finalizado, mas é passível de evoluções. 
