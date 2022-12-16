@@ -21,7 +21,7 @@ const userSchema = new Schema(
     },
     cargo: {
         type: String,
-        required: true,
+        required: false,
         minlength: 2,
         maxlenght: 50
     },
