@@ -8,17 +8,17 @@ import cors from "cors";
 
 dotenv.config();
 
-dbConnect();
-
 const app = express();
 
-app.use(cors({ origin: process.env.REACT_URL }));
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRouter);
 app.use("/ferias", feriasRouter);
 app.use("/departamento", departamentoRouter);
 
-app.listen(Number(process.env.PORT), () =>
-  console.log(`server on port ${process.env.PORT}!`)
+dbConnect().then(() =>
+  app.listen(Number(process.env.PORT), () =>
+    console.log(`server on port ${process.env.PORT}!`)
+  )
 );

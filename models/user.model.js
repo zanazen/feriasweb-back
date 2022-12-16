@@ -1,52 +1,50 @@
-import { model, Schema } from "mongoose"
+import { model, Schema } from "mongoose";
 
 const userSchema = new Schema(
-{
+  {
     nome: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 2,
-        maxlenght: 100
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 2,
+      maxlenght: 100,
     },
     email: {
-        type: String,
-        unique: true,
-        trim: true,
-        match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/gm
+      type: String,
+      unique: true,
+      trim: true,
+      match: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/gm,
     },
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     cargo: {
-        type: String,
-        required: false,
-        minlength: 2,
-        maxlenght: 50
+      type: String,
+      minlength: 2,
+      maxlenght: 50,
     },
     isAdmin: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
-    departamento:
-        {
-          type: Schema.Types.ObjectId,
-          ref: "Departamento",
+    departamento: {
+      type: Schema.Types.ObjectId,
+      ref: "Departamento",
     },
     inicioExercicio: {
-        type: Date
+      type: Date,
     },
     ferias: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "Ferias",
-        },
-    ]
-},
-{
-timestamps: true,
-}
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Ferias",
+      },
+    ],
+  },
+  {
+    timestamps: true,
+  }
 );
 const UserModel = model("User", userSchema);
 
