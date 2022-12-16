@@ -20,7 +20,7 @@ const feriasSchema = new Schema(
             type: String,
             default: "agendado"
         },        
-        user: { type: Schema.Types.ObjectId, ref: "User" },
+        user: { type: Schema.Types.ObjectId, ref: "user" },
     },
     
 { timestamps: true }

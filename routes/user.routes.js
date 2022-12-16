@@ -4,6 +4,7 @@ import UserModel from "../models/user.model.js";
 import generateToken from "../config/jwt.config.js";
 import FeriasModel from "../models/ferias.model.js";
 import attachCurrentUser from "../middlewares/attachCurrentUser.js";
+import isAuth from "../middlewares/isAuth.js";
 // import DepartamentoModel from "../models/departamento.model.js";
 
 const router = express.Router();
@@ -65,11 +66,12 @@ router.post("/login", async (request, response) => {
   }
 });
 
-router.get("/all", async (request, response) => {
+router.get("/all", isAuth, attachCurrentUser, async (request, response) => {
   try {
-    const users = await UserModel.find({}).populate("ferias"); //ferias campo do schema
-
-    return response.status(200).json(users);
+    const user = await UserModel.findById(request.currentUser._id).populate(
+      "ferias"
+    ); //ferias campo do schema
+    return response.status(200).json(user);
   } catch (error) {
     console.log(error);
     return response.status(500).json({ msg: "Algo deu errado." });
@@ -93,11 +95,10 @@ router.get("/:id", async (request, response) => {
   }
 });
 
-router.put("/edit/:id", async (request, response) => {
+router.put("/edit", isAuth, attachCurrentUser, async (request, response) => {
   try {
-    const { id } = request.params;
     const updateEmployeeById = await UserModel.findByIdAndUpdate(
-      id,
+      request.currentUser._id,
       { ...request.body },
       { new: true, runValidators: true }
     );

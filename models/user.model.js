@@ -21,6 +21,7 @@ const userSchema = new Schema(
     },
     cargo: {
       type: String,
+      default:"servidor",
       minlength: 2,
       maxlenght: 50,
     },
@@ -29,8 +30,7 @@ const userSchema = new Schema(
       default: false,
     },
     departamento: {
-      type: Schema.Types.ObjectId,
-      ref: "Departamento",
+      type: String
     },
     inicioExercicio: {
       type: Date,
